@@ -1,24 +1,62 @@
-import request from '@/utils/request'
+import request from "@/utils/request";
 
 export function login(data) {
   return request({
-    url: '/vue-admin-template/user/login',
-    method: 'post',
-    data
-  })
+    method: "POST", //所有接口都有跨域，表示所有接口都要带/api
+    url: "/sys/login",
+    data,
+  });
 }
 
-export function getInfo(token) {
+/**
+ *  获取用户的基本资料
+ *
+ * **/
+export function getUserInfo() {
   return request({
-    url: '/vue-admin-template/user/info',
-    method: 'get',
-    params: { token }
-  })
+    url: "/sys/profile",
+    method: "post",
+  });
 }
 
-export function logout() {
+/** *
+ *
+ * 获取用户的基本信息  现在写它 完全是为了显示头像
+ * **/
+export function getUserDetailById(id) {
   return request({
-    url: '/vue-admin-template/user/logout',
-    method: 'post'
-  })
+    url: `/sys/user/${id}`,
+  });
 }
+
+/** *
+ *
+ * 保存员工的基本信息
+ * **/
+export function saveUserDetailById(data) {
+  return request({
+    url: `/sys/user/${data.id}`,
+    method: "put",
+    data,
+  });
+}
+/** *
+ *  更新用户详情的基础信息
+ * **/
+export function updatePersonal(data) {
+  return request({
+    url: `/employees/${data.userId}/personalInfo`,
+    method: "put",
+    data,
+  });
+}
+
+/** *
+ *  读取用户详情的基础信息
+ * **/
+export function getPersonalDetail(id) {
+  return request({
+    url: `/employees/${id}/personalInfo`,
+  });
+}
+

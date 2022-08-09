@@ -5,16 +5,24 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
-
+import { mixins } from "@/utils/mixins";
+import { mapGetters } from "vuex";
 export default {
-  name: 'Dashboard',
+  mixins: [mixins],
+  name: "Dashboard",
   computed: {
-    ...mapGetters([
-      'name'
-    ])
-  }
-}
+    ...mapGetters(["name"]),
+  },
+  mounted() {
+    // this.hello()
+
+    // console.log("自己mounted");
+  },
+  created() {
+    // this.hello()
+    // console.log("z自己created");
+  },
+};
 </script>
 
 <style lang="scss" scoped>
